@@ -1,0 +1,12 @@
+# database
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/board?charcterEncoding=utf8"
+    username: "gbUser"
+    password: "12345"
+
+mybatis:
+  config: "mybatis-config.xml"
+  type-aliases-package: "com.noso.board.model"
+  mapper-locations: "mybatis/mapper/*.xml"
