@@ -21,7 +21,7 @@ public class HomeController {
     protected final BoardService bService;
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.GET, value = {"","/"})
+    @RequestMapping(method = RequestMethod.GET, value = {"", "/"})
     public String main() {
 
         List<BoardDTO> bList = bService.selectAll();
@@ -35,5 +35,20 @@ public class HomeController {
             System.out.println("Json 오류");
         }
         return jsonString;
+    }
+
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = {"", "/"})
+    public String write(@RequestBody BoardDTO boardDTO) {
+
+        if (boardDTO != null) {
+            int result = bService.insert(boardDTO);
+            if (result != 1) {
+                return "SQL 오류";
+            }
+            return "OK";
+        }
+        return "FAIL";
     }
 }

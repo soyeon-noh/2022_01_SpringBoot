@@ -38,6 +38,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public int insert(BoardDTO dto) {
-        return 0;
+        int result = boardDao.insert(dto);
+        System.out.println(result);
+        return result;
     }
 }

@@ -6,4 +6,8 @@
     <select id="selectAll" resultType="BoardDTO">
         SELECT * FROM tbl_board;
     </select>
+    <insert id="insert" parameterType="BoardDTO">
+        INSERT INTO tbl_board(b_title, b_name, b_date, b_content)
+        VALUES (#{b_title}, #{b_name},#{b_date},#{b_content})
+    </insert>
 </mapper>
