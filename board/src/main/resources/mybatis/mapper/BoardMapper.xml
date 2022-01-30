@@ -10,4 +10,7 @@
         INSERT INTO tbl_board(b_title, b_name, b_date, b_content)
         VALUES (#{b_title}, #{b_name},#{b_date},#{b_content})
     </insert>
+    <delete id="delete" parameterType="Long">
+        DELETE FROM tbl_board WHERE b_seq = #{b_seq}
+    </delete>
 </mapper>

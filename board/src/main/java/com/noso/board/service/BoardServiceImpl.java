@@ -27,8 +27,12 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public int delete(Long seq) {
-        return 0;
+    public int delete(List<Long> seqList) {
+
+        for(Long seq: seqList){
+            boardDao.delete(seq);
+        }
+        return 1;
     }
 
     @Override

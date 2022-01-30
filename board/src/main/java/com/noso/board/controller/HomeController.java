@@ -45,10 +45,27 @@ public class HomeController {
         if (boardDTO != null) {
             int result = bService.insert(boardDTO);
             if (result != 1) {
-                return "SQL 오류";
+                return "FAIL: SQL 오류";
             }
             return "OK";
         }
-        return "FAIL";
+        return "FAIL: client 값이 전달되지 않음";
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value ={"/board"})
+    public String delete(@RequestBody List<Long> seqList){
+
+        System.out.println("seqList" + seqList);
+        if(seqList != null){
+            int result = bService.delete(seqList);
+            if( result != 1){
+                return "FAIL: SQL 오류";
+            }
+            return "OK";
+        }
+        return "FAIL: client 값이 전달되지 않음";
+
+
     }
 }
