@@ -6,10 +6,17 @@
     <select id="selectAll" resultType="BoardDTO">
         SELECT * FROM tbl_board;
     </select>
+    <select id="selectOne" resultType="Long">
+        SELECT * FROM tbl_board WHERE b_seq = #{b_seq};
+    </select>
     <insert id="insert" parameterType="BoardDTO">
         INSERT INTO tbl_board(b_title, b_name, b_date, b_content)
         VALUES (#{b_title}, #{b_name},#{b_date},#{b_content})
     </insert>
+    <update id="update" parameterType="BoardDTO">
+        UPDATE tbl_board SET b_title = #{b_title}, b_name = #{b_name}, b_date = #{b_date}, b_content = #{b_content}
+        WHERE b_seq = #{b_seq}
+    </update>
     <delete id="delete" parameterType="Long">
         DELETE FROM tbl_board WHERE b_seq = #{b_seq}
     </delete>

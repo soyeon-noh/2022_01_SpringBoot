@@ -18,13 +18,15 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public BoardDTO findById(Long seq) {
-        return null;
+        return boardDao.selectOne(seq);
     }
 
     @Override
     public List<BoardDTO> selectAll() {
         return boardDao.selectAll();
     }
+
+
 
     @Override
     public int delete(List<Long> seqList) {
@@ -37,7 +39,9 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public int update(BoardDTO dto) {
-        return 0;
+        int result = boardDao.update(dto);
+        System.out.println(result);
+        return result;
     }
 
     @Override
