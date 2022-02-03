@@ -36,7 +36,7 @@ public class HomeController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = {"/board/{b_seq}"})
-    public String detail(@PathVariable("b_seq") Long b_seq) {
+    public String findById(@PathVariable("b_seq") Long b_seq) {
 
         BoardDTO dto = bService.findById(b_seq);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -51,7 +51,7 @@ public class HomeController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, value = {"/board"})
+    @RequestMapping(method = RequestMethod.POST, value = {"","/"})
     public String write(@RequestBody BoardDTO boardDTO) {
 
         if (boardDTO != null) {
@@ -79,9 +79,13 @@ public class HomeController {
         return "FAIL: client 값이 전달되지 않음";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = {"/board/{b_seq}"})
+    @RequestMapping(method = RequestMethod.PUT, value = {"/board/{b_seq}"})
     public String update(@RequestBody BoardDTO boardDTO) {
-
+        System.out.println("update boardDTO: " + boardDTO);
+        if( boardDTO !=null){
+            int result = bService.update(boardDTO);
+            System.out.println("update result:"+result);
+        }
         return "OK";
     }
 }
