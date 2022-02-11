@@ -12,7 +12,7 @@ import java.util.List;
 public interface BoardDao {
     // Mapper.xml 과 dao의 method가 같은 이름이어야 한다.
     public List<BoardDTO> selectAll();
-    public BoardDTO selectOne(Long b_seq);
+    public BoardDTO findById(Long b_seq);
     public int insert(BoardDTO boardDTO);
     public int update(BoardDTO boardDTO);
     public int delete(Long b_seq);

@@ -18,7 +18,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public BoardDTO findById(Long seq) {
-        return boardDao.selectOne(seq);
+        BoardDTO dto = boardDao.findById(seq);
+        return dto;
     }
 
     @Override
@@ -27,11 +28,10 @@ public class BoardServiceImpl implements BoardService {
     }
 
 
-
     @Override
     public int delete(List<Long> seqList) {
 
-        for(Long seq: seqList){
+        for (Long seq : seqList) {
             boardDao.delete(seq);
         }
         return 1;

@@ -79,6 +79,7 @@ public class HomeController {
         return "FAIL: client 값이 전달되지 않음";
     }
 
+    @ResponseBody
     @RequestMapping(method = RequestMethod.PUT, value = {"/board/{b_seq}"})
     public String update(@RequestBody BoardDTO boardDTO) {
         System.out.println("update boardDTO: " + boardDTO);

@@ -6,7 +6,7 @@
     <select id="selectAll" resultType="BoardDTO">
         SELECT * FROM tbl_board;
     </select>
-    <select id="selectOne" resultType="Long">
+    <select id="findById" resultType="BoardDTO">
         SELECT * FROM tbl_board WHERE b_seq = #{b_seq};
     </select>
     <insert id="insert" parameterType="BoardDTO">
