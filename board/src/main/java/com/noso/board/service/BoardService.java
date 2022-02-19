@@ -10,7 +10,8 @@ public interface BoardService {
 
     public BoardDTO findById(Long seq);
     public List<BoardDTO> selectAll();
-    public int delete(List<Long> seqList);
+//    public int delete(List<Long> seqList);
+public int delete(Long seq);
     public int update(BoardDTO dto);
     public int insert(BoardDTO dto);
 }

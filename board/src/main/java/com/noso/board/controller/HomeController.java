@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping(value = {"/board"})
 @RequiredArgsConstructor
 public class HomeController {
 
@@ -18,9 +19,8 @@ public class HomeController {
     protected final BoardService bService;
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.GET, value = {"", "/"})
+    @RequestMapping(method = RequestMethod.GET, value = { "","/"})
     public String main() {
-
         List<BoardDTO> bList = bService.selectAll();
 
         ObjectMapper objMapper = new ObjectMapper();
@@ -35,7 +35,7 @@ public class HomeController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.GET, value = {"/board/{b_seq}"})
+    @RequestMapping(method = RequestMethod.GET, value = {"/{b_seq}"})
     public String findById(@PathVariable("b_seq") Long b_seq) {
 
         BoardDTO dto = bService.findById(b_seq);
@@ -65,28 +65,35 @@ public class HomeController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, value = {"/board"})
-    public String delete(@RequestBody List<Long> seqList) {
-
-        System.out.println("seqList" + seqList);
-        if (seqList != null) {
-            int result = bService.delete(seqList);
-            if (result != 1) {
-                return "FAIL: SQL 오류";
-            }
-            return "OK";
-        }
-        return "FAIL: client 값이 전달되지 않음";
-    }
-
-    @ResponseBody
-    @RequestMapping(method = RequestMethod.PUT, value = {"/board/{b_seq}"})
+    @RequestMapping(method = RequestMethod.PUT, value = {"/{b_seq}"})
     public String update(@RequestBody BoardDTO boardDTO) {
         System.out.println("update boardDTO: " + boardDTO);
-        if( boardDTO !=null){
+        if(boardDTO !=null){
             int result = bService.update(boardDTO);
             System.out.println("update result:"+result);
         }
         return "OK";
     }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.DELETE, value = {"/{b_seq}"})
+    public String delete(@PathVariable("b_seq") Long b_seq) {
+
+        int result = bService.delete(b_seq);
+        if(result == 0){
+            return null;
+        }
+//        System.out.println("seqList" + seqList);
+//        if (seqList != null) {
+//            int result = bService.delete(seqList);
+//            if (result != 1) {
+//                return "FAIL: SQL 오류";
+//            }
+//            return "OK";
+//        }
+//        return "FAIL: client 값이 전달되지 않음";
+        return "OK";
+    }
+
+
 }

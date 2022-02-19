@@ -27,15 +27,21 @@ public class BoardServiceImpl implements BoardService {
         return boardDao.selectAll();
     }
 
-
     @Override
-    public int delete(List<Long> seqList) {
+    public int delete(Long seq) {
 
-        for (Long seq : seqList) {
-            boardDao.delete(seq);
-        }
-        return 1;
+        return boardDao.delete(seq);
     }
+
+
+//    @Override
+//    public int delete(List<Long> seqList) {
+//
+//        for (Long seq : seqList) {
+//            boardDao.delete(seq);
+//        }
+//        return 1;
+//    }
 
     @Override
     public int update(BoardDTO dto) {
